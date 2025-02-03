@@ -58,7 +58,16 @@ The branching strategy we'll follow includes:
     
 -   From the `DEV` branch, developers can create their own feature branches.
     
+ ### Naming Strategy
 
+The naming strategy will be as follows:
+
+-   `feature/{branch-name}`: A feauture or module branch should always start with the prefix `feature`. Branch name should meaningful according to the feature/module you are developing
+    
+-   `fix/{branch-name}` : When you are fixing a bug, the prefix of the branch should start with `fix` followed by a branch name which will represent the bug you are fixing
+    
+-   `hotfix/{branch-name}` : `hotfix` prefix should be used if you are fixing a production bug which needs to be pushed immediately. This will be directly merged to UAT or STG branches and remerged to DEV branch later
+   
 Here's a diagram to visualize this strategy:
 
 ```mermaid
@@ -73,6 +82,10 @@ D --> E[feature/branch1]
 E -- PR --> D
 D --> F[feature/branch2]
 F -- PR --> D
+A --> G[hotfix/branch3]
+G --RELEASE--> A
+G --> D
+
 ```
 
 ## Common Git Commands
