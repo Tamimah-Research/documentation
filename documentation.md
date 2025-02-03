@@ -62,7 +62,7 @@ The branching strategy we'll follow includes:
 Here's a diagram to visualize this strategy:
 
 ```mermaid
-graph LR
+graph TB
 A[ master]  --> B((STG))
 B --RELEASE--> A
 B --> C((UAT))
@@ -215,3 +215,55 @@ git stash pop  # To retrieve stashed changes
     -   Go to `Git > Manage Branches`.
         
     -   Create a new branch or switch to an existing branch.
+
+
+# Configuring Visual Studio Code as Your Git Merge Tool
+
+## Prerequisites
+
+- Ensure that [Visual Studio Code](https://code.visualstudio.com/) is installed.
+- Ensure that [Git](https://git-scm.com/) is installed.
+
+## Step-by-Step Guide
+
+1. **Open Git Configuration**:
+   - Open a terminal (Git Bash, Command Prompt, or PowerShell).
+   - Open your global Git configuration file with the following command:
+     ```bash
+     git config --global -e
+     ```
+   - This command opens your global Git configuration file in the default text editor.
+
+2. **Set VS Code as the Default Merge Tool**:
+   - Add the following lines to your Git configuration file to set Visual Studio Code as your default merge tool:
+     ```ini
+     [merge]
+         tool = vscode
+     [mergetool "vscode"]
+         cmd = code --wait $MERGED
+     ```
+
+3. **Set VS Code as the Default Diff Tool (Optional)**:
+   - If you also want to use Visual Studio Code as your default diff tool, add the following lines to your Git configuration file:
+     ```ini
+     [diff]
+         tool = vscode
+     [difftool "vscode"]
+         cmd = code --wait --diff $LOCAL $REMOTE
+     ```
+
+4. **Test Your Configuration**:
+   - To test the merge tool configuration, create a merge conflict in one of your Git repositories and resolve it using Visual Studio Code.
+   - You can invoke the merge tool with the following command:
+     ```bash
+     git mergetool
+     ```
+   - Similarly, you can test the diff tool configuration by running:
+     ```bash
+     git difftool
+     ```
+
+5. **Using the Merge Tool**:
+   - When you run `git mergetool`, Visual Studio Code will open with the conflicting files.
+   - Resolve the conflicts in Visual Studio Code and save the changes.
+   - Close Visual Studio Code to let Git know that the merge process is complete.
