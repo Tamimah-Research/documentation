@@ -66,7 +66,7 @@ The naming strategy will be as follows:
     
 -   `fix/{branch-name}` : When you are fixing a bug, the prefix of the branch should start with `fix` followed by a branch name which will represent the bug you are fixing
     
--   `hotfix/{branch-name}` : `hotfix` prefix should be used if you are fixing a production bug which needs to be pushed immediately. This will be directly merged to `master` or `STG` branches and remerged to `DEV` branch later
+-   `hotfix/{branch-name}` : `hotfix` prefix should be used if you are fixing a production bug which needs to be pushed immediately. This will be directly merged to `master` or `STG` branches and remerged to `DEV` branch later. `hotfix` branch must be tested thoroughly and reviewed by the TL before it can be merged to `master` or `STG`
    
 Here's a diagram to visualize this strategy:
 
