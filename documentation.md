@@ -9,22 +9,9 @@ Typically, to do this in a Git-based workflow, you would:
 -   Let Git intelligently **merge your specific changes** back into the **main copy of files**, so that your changes don't impact other people's updates.
 -   Let Git **keep track** of your and other people's changes, so you all stay working on the most up-to-date version of the project.
 
-
-# Rules
-Remember the below rules when you work on GIT
-
-## Never work on `main/master` branch
-
-Working directly on the `main` or `master` branch is risky and generally discouraged because it serves as the **stable** and **production-ready** version of the codebase. 
-
-Any changes made directly to these branches can introduce bugs or unintended issues that might affect the entire project. Instead, it is best to create separate branches for new features, bug fixes, or hotfixes. This approach allows for thorough testing and code review in isolation before merging changes into the main or master branch, ensuring the overall stability and reliability of the project
-
-
-# Git Basics Documentation
-
 ## Table of Contents
 
-1.  Introduction
+1. Rules 
     
 2.  Branching Strategy
     
@@ -38,17 +25,56 @@ Any changes made directly to these branches can introduce bugs or unintended iss
 4.  Using Git with VSCode
     
 5.  Using Git with Visual Studio 2022
-    
 
-## Introduction
+6. Configuring Visual Studio Code as Your Git Merge Tool    
 
-Git is a distributed version control system that helps developers collaborate on projects. It tracks changes, allows multiple people to work on the same codebase, and helps manage code versions.
+
+# Rules
+Remember the below rules when you work on GIT
+
+## Never work on `main/master` branch
+
+Working directly on the `main` or `master` branch is risky and generally discouraged because it serves as the **stable** and **production-ready** version of the codebase. 
+
+### Branch Management
+1. **Use Descriptive Branch Names:** Choose clear, concise names that reflect the purpose of the branch (e.g., `feature/login`, `fix/issue-123`).
+2. **Branch Protection:** Protect important branches like `main` and `develop` to prevent direct commits and enforce pull request reviews.
+3. **Regular Cleanup:** Periodically delete merged branches once UAT is complete to keep the repository tidy.
+4. **Reset Branch:** Never reset your branch unless approved by your manager or TL
+
+### Commit Practices
+1. **Write Meaningful Commit Messages:** Summarize changes succinctly in the subject line and provide more detail in the body if necessary. **Use Jira issue number** always as the starting word of the commit message always
+2. **Atomic Commits:** Each commit should be a self-contained unit of change that makes sense on its own.
+3. **Commit Often:** Make small, frequent commits to make it easier to track changes and revert if needed.
+4. **Reset Commit:** Never reset your commit to an older one unless you have a TL/manager approval
+5. **Force Push**: Never force push to a branch when GIT refuses your push. Check what is the problem. You probably have a commit or two to pull or have merge conflicts you need to fix before pushing. Fix those before pushing normally. **Never Force Push.**
+
+### Pull Requests
+1. **Create Pull Requests for Major Changes:** Always use pull requests once you complete your development for module or task to `DEV` branch.
+2. **Use Draft Pull Requests:** Start a pull request early to gather feedback as you work on changes.
+3. **Review Thoroughly:** Take the time to review code changes carefully and provide constructive feedback.
+
+### Code Review
+1. **Be Respectful:** Provide constructive criticism and recognize good work.
+2. **Follow Guidelines:** Ensure code follows established coding standards and best practices.
+3. **Test Changes:** Verify that code changes are properly tested before merging.
+
+### General Best Practices
+1. **Keep Repositories Clean:** Remove unused files and keep the repository structure organized.
+2. **Document Processes:** Maintain documentation for common processes, like branching strategies and release workflows.
+3. **Automate Where Possible:** Use CI/CD pipelines to automate testing, building, and deployment processes.
+
+
+Any changes made directly to these branches can introduce bugs or unintended issues that might affect the entire project. Instead, it is best to create separate branches for new features, bug fixes, or hotfixes. This approach allows for thorough testing and code review in isolation before merging changes into the main or master branch, ensuring the overall stability and reliability of the project
+
+
+
 
 ## Branching Strategy
 
 The branching strategy we'll follow includes:
 
--   `master`: The main branch.
+-   `master`: The main branch. In some cases the branch name can be `main` too
     
 -   `STG` (Staging): For pre-production.
     
@@ -62,7 +88,7 @@ The branching strategy we'll follow includes:
 
 The naming strategy will be as follows:
 
--   `feature/{branch-name}`: A feauture or module branch should always start with the prefix `feature`. Branch name should meaningful according to the feature/module you are developing
+-   `feature/{branch-name}`: A feauture or module or task branch should always start with the prefix `feature`. Branch name should meaningful according to the feature/module you are developing
     
 -   `fix/{branch-name}` : When you are fixing a bug, the prefix of the branch should start with `fix` followed by a branch name which will represent the bug you are fixing
     
@@ -82,7 +108,7 @@ D --> E[feature/branch1]
 E -- PR --> D
 D --> F[feature/branch2]
 F -- PR --> D
-A --> G[hotfix/branch3]
+A --> G[hotfix/my-prod-bug]
 G --RELEASE--> A
 G --> D
 D --> H[fix/branch4]
@@ -146,7 +172,7 @@ git stash pop  # To retrieve stashed changes
 
 ```
 
-## Using Git with VSCode
+# Using Git with VSCode
 
 1.  **Install Git:** Make sure Git is installed on your system. Download from git-scm.com.
     
@@ -191,7 +217,7 @@ git stash pop  # To retrieve stashed changes
     -   You can stage, commit, and push changes directly from the Source Control panel.
         
 
-## Using Git with Visual Studio 2022
+# Using Git with Visual Studio 2022
 
 1.  **Install Git:** Make sure Git is installed on your system. Download from git-scm.com.
     
@@ -282,3 +308,14 @@ git stash pop  # To retrieve stashed changes
    - When you run `git mergetool`, Visual Studio Code will open with the conflicting files.
    - Resolve the conflicts in Visual Studio Code and save the changes.
    - Close Visual Studio Code to let Git know that the merge process is complete.
+
+
+
+#### NOTE
+You can use the GUI based applications like below too to work on GIT
+- GIT Extensions
+- GitHub desktop
+- Source Tree
+- Tortoise GIT
+- SmartGit
+
